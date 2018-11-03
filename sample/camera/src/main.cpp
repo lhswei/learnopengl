@@ -36,6 +36,20 @@ bool firstMouse = true;
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
+std::string g_RootDir;
+
+void GetPath(char *pString, char *pCrrentDir) //解析文件路径
+{
+	//获取源文件字符串
+	while (*(pCrrentDir++) = *(pString++));
+	//从源字符串尾部向前移到最后一个反斜杠处    
+	while (*(--pCrrentDir) != '\\\\');
+	//在最后一个反斜杠位置截断，获得当前路径           
+	*pCrrentDir = '\\0';
+}
+
+
+
 int main(int argc, char* argv[])
 {
 	// glfw: initialize and configure
@@ -49,8 +63,12 @@ int main(int argc, char* argv[])
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
 #endif
 
-														 // glfw window creation
-														 // --------------------
+	g_RootDir = argv[0];
+	int index = g_RootDir.find_last_of("\\");
+	g_RootDir = g_RootDir.substr(0, index);
+
+	// glfw window creation											 
+	// --------------------
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
 	{
@@ -81,9 +99,11 @@ int main(int argc, char* argv[])
 
 	// build and compile our shader zprogram
 	// ------------------------------------
-	//Shader ourShader("0001.vs", "0001.fs");
-	Shader ourShader("e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0001.vs", "e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0001.fs");
-
+	std::string p_shader1(g_RootDir);
+	p_shader1.append("\\0001.vs");
+	std::string p_shader2(g_RootDir);
+	p_shader2.append("\\0001.fs");
+	Shader ourShader(p_shader1.c_str(), p_shader2.c_str());
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
@@ -178,11 +198,9 @@ int main(int argc, char* argv[])
 	int width, height, nrChannels;
 	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
 	// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-	char buff[512];
-	_getcwd(buff, 512);
-	std::string spath1(buff);
+	std::string spath1(g_RootDir);
 	spath1.append("\\0001.jpg"); 
-	unsigned char* data = stbi_load("e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0001.jpg", &width, &height, &nrChannels, 0);
+	unsigned char* data = stbi_load(spath1.c_str(), &width, &height, &nrChannels, 0);
 	if (data)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -204,9 +222,9 @@ int main(int argc, char* argv[])
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	// load image, create texture and generate mipmaps
-	std::string spath2(buff);
+	std::string spath2(g_RootDir);
 	spath2.append("\\0002.png");
-	data = stbi_load("e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0002.png", &width, &height, &nrChannels, 0);
+	data = stbi_load(spath2.c_str(), &width, &height, &nrChannels, 0);
 	if (data)
 	{
 		// note that the awesomeface.png has transparency and thus an alpha channel, so make sure to tell OpenGL the data type is of GL_RGBA
