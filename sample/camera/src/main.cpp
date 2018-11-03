@@ -1,4 +1,4 @@
-/*#include <shader_s.h>
+#include <shader_s.h>
 #include <GLFW/glfw3.h>
 
 #ifndef STB_IMAGE_IMPLEMENTATION
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 	// build and compile our shader zprogram
 	// ------------------------------------
 	//Shader ourShader("0001.vs", "0001.fs");
-	//Shader ourShader("e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0001.vs", "e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0001.fs");
+	Shader ourShader("e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0001.vs", "e:\\github\\opengl\\learnopengl\\build\\sample\\camera\\Debug\\0001.fs");
 
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
@@ -221,9 +221,9 @@ int main(int argc, char* argv[])
 
 	// tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
 	// -------------------------------------------------------------------------------------------
-	//ourShader.Use();
-	//ourShader.SetInt("texture1", 0);
-	//ourShader.SetInt("texture2", 1);
+	ourShader.Use();
+	ourShader.SetInt("texture1", 0);
+	ourShader.SetInt("texture2", 1);
 
 
 
@@ -253,16 +253,16 @@ int main(int argc, char* argv[])
 		glBindTexture(GL_TEXTURE_2D, texture2);
 
 		// activate shader
-		//ourShader.Use();
+		ourShader.Use();
 
 		// pass projection matrix to shader (note that in this case it could change every frame)
 		glm::mat4 projection(1);
 		projection = glm::perspective(glm::radians(camera.m_Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		//ourShader.SetMat4("projection", glm::value_ptr(projection));
+		ourShader.SetMat4("projection", glm::value_ptr(projection));
 		// camera/view transformation
 		glm::mat4 view(1);
 		view = camera.GetViewMatrix();
-		//ourShader.SetMat4("view", glm::value_ptr(view));
+		ourShader.SetMat4("view", glm::value_ptr(view));
 
 		// render boxes
 		glBindVertexArray(VAO);
@@ -273,7 +273,7 @@ int main(int argc, char* argv[])
 			model = glm::translate(model, cubePositions[i]);
 			float angle = 20.0f * i;
 			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-			//ourShader.SetMat4("model", glm::value_ptr(model));
+			ourShader.SetMat4("model", glm::value_ptr(model));
 
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
@@ -349,4 +349,3 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.ProcessMouseScroll(yoffset);
 }
-*/

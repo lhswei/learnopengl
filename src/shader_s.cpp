@@ -137,7 +137,7 @@ void Shader::SetMt3fv(const std::string &name, int count, unsigned char transpos
 
 void Shader::SetMt4fv(const std::string &name, int count, unsigned char transpose, float* value) const
 {
-	glUniformMatrix3fv(glGetUniformLocation(m_nId, name.c_str()), count, transpose, value);
+	glUniformMatrix4fv(glGetUniformLocation(m_nId, name.c_str()), count, transpose, value);
 }
 
 void Shader::CheckCompileErrors(unsigned int shader, std::string type)
