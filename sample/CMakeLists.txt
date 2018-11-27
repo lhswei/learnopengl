@@ -12,3 +12,8 @@ cmake_minimum_required(VERSION 2.8)
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/camera")
   add_subdirectory(camera)
 endif()
+
+cmake_minimum_required(VERSION 2.8)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/light")
+  add_subdirectory(light)
+endif()
