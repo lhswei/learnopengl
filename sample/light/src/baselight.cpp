@@ -52,7 +52,7 @@ int BaseLight::Init(const char* root, GLFWframebuffersizefun framebuffer_size_ca
 	glfwSetScrollCallback(m_window, scroll_callback);
 
 	// tell GLFW to capture our mouse
-	glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 	// glad: load all OpenGL function pointers
 	// ---------------------------------------
@@ -184,6 +184,7 @@ void BaseLight::Run()
 		glm::vec3 v_light_color(1.0f, 1.0f, 1.0f);
 		lightingShader.Set3fv("lightColor", 1, glm::value_ptr(v_light_color));
 		lightingShader.Set3fv("lightPos", 1, glm::value_ptr(m_lightPos));
+		lightingShader.Set3fv("viewPos", 1, glm::value_ptr(m_camera.m_Position));
 
 		// view/projection transformations
 		glm::mat4 projection(1);
