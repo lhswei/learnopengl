@@ -3439,6 +3439,11 @@ GLAPI PFNGLGETMULTISAMPLEFVPROC glad_glGetMultisamplefv;
 typedef void (APIENTRYP PFNGLSAMPLEMASKIPROC)(GLuint maskNumber, GLbitfield mask);
 GLAPI PFNGLSAMPLEMASKIPROC glad_glSampleMaski;
 #define glSampleMaski glad_glSampleMaski
+
+typedef void (APIENTRYP PFNGLVERTEXATTRIBDIVISORPROC)(GLuint index, GLuint divisor);
+GLAPI PFNGLVERTEXATTRIBDIVISORPROC glad_glVertexAttribDivisor;
+#define glVertexAttribDivisor glad_glVertexAttribDivisor
+
 #endif
 #define GL_MULTISAMPLE_ARB 0x809D
 #define GL_SAMPLE_ALPHA_TO_COVERAGE_ARB 0x809E

@@ -38,13 +38,13 @@ float lastFrame = 0.0f;
 
 std::string g_RootDir;
 
-void GetPath(char *pString, char *pCrrentDir) //½âÎöÎÄ¼şÂ·¾¶
+void GetPath(char *pString, char *pCrrentDir) //è§£ææ–‡ä»¶è·¯å¾„
 {
-	//»ñÈ¡Ô´ÎÄ¼ş×Ö·û´®
+	//è·å–æºæ–‡ä»¶å­—ç¬¦ä¸²
 	while (*(pCrrentDir++) = *(pString++));
-	//´ÓÔ´×Ö·û´®Î²²¿ÏòÇ°ÒÆµ½×îºóÒ»¸ö·´Ğ±¸Ü´¦    
+	//ä»æºå­—ç¬¦ä¸²å°¾éƒ¨å‘å‰ç§»åˆ°æœ€åä¸€ä¸ªåæ–œæ å¤„
 	while (*(--pCrrentDir) != '\\\\');
-	//ÔÚ×îºóÒ»¸ö·´Ğ±¸ÜÎ»ÖÃ½Ø¶Ï£¬»ñµÃµ±Ç°Â·¾¶           
+	//åœ¨æœ€åä¸€ä¸ªåæ–œæ ä½ç½®æˆªæ–­ï¼Œè·å¾—å½“å‰è·¯å¾„
 	*pCrrentDir = '\\0';
 }
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 	int index = g_RootDir.find_last_of("\\");
 	g_RootDir = g_RootDir.substr(0, index);
 
-	// glfw window creation											 
+	// glfw window creation
 	// --------------------
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
 	if (window == NULL)
@@ -169,7 +169,7 @@ int main(int argc, char* argv[])
 	glGenBuffers(1, &VBO);
 
 	glBindVertexArray(VAO);
-	
+
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -181,7 +181,7 @@ int main(int argc, char* argv[])
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	// load and create a texture 
+	// load and create a texture
 	// -------------------------
 	unsigned int texture1, texture2;
 	// texture 1
@@ -199,7 +199,7 @@ int main(int argc, char* argv[])
 	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
 	// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
 	std::string spath1(g_RootDir);
-	spath1.append("\\0001.jpg"); 
+	spath1.append("\\0001.jpg");
 	unsigned char* data = stbi_load(spath1.c_str(), &width, &height, &nrChannels, 0);
 	if (data)
 	{
@@ -335,7 +335,7 @@ void processInput(GLFWwindow *window)
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-	// make sure the viewport matches the new window dimensions; note that width and 
+	// make sure the viewport matches the new window dimensions; note that width and
 	// height will be significantly larger than specified on retina displays.
 	glViewport(0, 0, width, height);
 }

@@ -17,3 +17,9 @@ cmake_minimum_required(VERSION 2.8)
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/light")
   add_subdirectory(light)
 endif()
+
+cmake_minimum_required(VERSION 2.8)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/instancing")
+  add_subdirectory(instancing)
+endif()
+
