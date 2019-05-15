@@ -106,7 +106,7 @@ void sbuffer_loop(GLFWwindow* window)
 	glStencilMask(0x00);
 	//glDisable(GL_DEPTH_TEST);
 	pshaderSingleColor->use();
-	float scale = 1.1;
+	float scale = 1.01;
 	//cube
 	glBindVertexArray(cubeVAO);
 	glBindTexture(GL_TEXTURE_2D, cubeTexture);
