@@ -6,6 +6,7 @@
 // -------------------------
 Shader* pshader = NULL;
 Shader* pshaderSingleColor = NULL;
+Shader* pscreenShader = NULL;
 
 // set up vertex data (and buffer(s)) and configure vertex attributes
 // ------------------------------------------------------------------
@@ -64,11 +65,29 @@ float planeVertices[] = {
     -5.0f, -0.5f, -5.0f,  0.0f, 2.0f,
      5.0f, -0.5f, -5.0f,  2.0f, 2.0f
 };
+
+float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
+    // positions   // texCoords
+    -1.0f,  1.0f,  0.0f, 1.0f,
+    -1.0f, -1.0f,  0.0f, 0.0f,
+     1.0f, -1.0f,  1.0f, 0.0f,
+
+    -1.0f,  1.0f,  0.0f, 1.0f,
+     1.0f, -1.0f,  1.0f, 0.0f,
+     1.0f,  1.0f,  1.0f, 1.0f
+};
+
 // cube VAO
 unsigned int cubeVAO, cubeVBO;
 
 // plane VAO
 unsigned int planeVAO, planeVBO;
+
+// plane VAO
+unsigned int quadVAO, quadVBO;
+
+// fbo
+unsigned int framebuffer, textureColorbuffer, rbo;
 
 // load textures
 // -------------
@@ -84,5 +103,10 @@ size_t get_cube_data_len()
 size_t get_plane_data_len()
 {
 	return sizeof(planeVertices);
+}
+
+size_t get_quad_data_len()
+{
+    return sizeof(quadVertices);
 }
 

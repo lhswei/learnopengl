@@ -22,7 +22,7 @@ void glfw_init()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_SAMPLES, 4);
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
@@ -56,7 +56,8 @@ GLFWwindow* create_window()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return NULL;
     }
-	glEnable(GL_MULTISAMPLE); // Enabled by default on some drivers, but not all so always enable to make sure
+
+	//glEnable(GL_MULTISAMPLE); // Enabled by default on some drivers, but not all so always enable to make sure
 	return window;
 }
 

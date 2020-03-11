@@ -15,4 +15,8 @@ extern void sbuffer_init();
 extern void sbuffer_loop(GLFWwindow* window);
 extern void sbuffer_end();
 
+extern void fbuffer_init();
+extern void fbuffer_loop(GLFWwindow* window);
+extern void fbuffer_end();
+
 #endif // _INCLUDE_H_

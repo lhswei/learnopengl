@@ -10,17 +10,14 @@ int main()
 	}
 
 
-	fbuffer_init();
-
     // render loop
     // -----------
     while(!glfwWindowShouldClose(window))
     {
-		fbuffer_loop(window);
+
+		Sleep(1);
     }
 
-	fbuffer_end();
     glfwTerminate();
     return 0;
 }
-
